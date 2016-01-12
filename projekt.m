@@ -65,7 +65,7 @@ fi = radtodeg(angle(Ug));
 for k=1:3
 Pgen(k) = real(Ezr(k) * conj(Ig(k)));
 end;
-for k=4:36
+for k=4:size(galezie)
     Pgen(k) = 0;
 end;
 
@@ -74,7 +74,7 @@ for k=1:3
 Qgen(k) = imag(Ezr(k) * conj(Ig(k)));
 end;
 
-for k=4:36
+for k=4:size(galezie)
     Qgen(k) = 0;
 end;
 
@@ -83,7 +83,7 @@ for k=1:3
     Podb(k) = 0;
 end;
 
-for k=4:36
+for k=4:size(galezie)
     Podb(k) = real(Ug(k) * conj(Ig(k)));
 end;
 %Qgen;
@@ -91,7 +91,7 @@ for k=1:3
     Qodb(k) = 0;
 end;
 
-for k=4:36
+for k=4:size(galezie)
     Qodb(k) = imag(Ug(k) * conj(Ig(k)));
 end;
 %Gen_fi
@@ -101,7 +101,7 @@ genfi = 0;%radtodeg(angle(Pgen))-radtodeg(angle(Qgen));
 file = fopen('wyniki.txt','w');
  
 fprintf(file,'nr_gal--wp--wk---U [kV] --- fi---I [kA]--gen fi--gen P--gen Q--odb P -- odb Q\n');
-for k=1:36
+for k=1:size(galezie)
     fprintf(file,'%2d %7d %3d  %4.2e  %4.0f  %4.2e %4.2f  %4.0f  %7.2f %7.2f %7.2f \n',k,galezie(k,2),galezie(k,3),abs(Ug(k)/1000),fi(k),abs(Ig(k))/1000,genfi,Pgen(k)/1000000,Qgen(k)/1000000,Podb(k)/1000000,Qodb(k)/1000000);
 end;
 
